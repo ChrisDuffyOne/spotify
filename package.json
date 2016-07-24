@@ -1,0 +1,20 @@
+{
+  "name": "spotify",
+  "version": "1.0.0",
+  "description": "A node application interfacing with spotify api",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "keywords": [
+    "spotify",
+    "api",
+    "event"
+  ],
+  "author": "Christopher Duffy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "unirest": "^0.5.0"
+  }
+}
