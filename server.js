@@ -34,6 +34,8 @@ var app = express();
 app.use(express.static('public'));
 
 app.get('/search/:name', function(request, response){
+		
+		//Look up Artist Info
 		var searchReq = getFromApi('search',{
 			q: request.params.name,
 			limit: 1,
@@ -43,12 +45,14 @@ app.get('/search/:name', function(request, response){
 			if(typeof item.artists.items[0] === 'undefined'){
 				searchReq.emit('error', 404);
 			}else{
+				
+				//Look Up Related Artists
 				var artist = item.artists.items[0];
-			
 				var related = getFromApi('artists/'+artist.id+'/related-artists');			
 				related.on('end', function(item){
 					artist.related = item.artists;	
 				
+					//Look up Top Tracks for Related Artists
 					var completed = 0;
 					artist.related.forEach(function(musician){
 						topTracks(musician, function(hotTracks){
